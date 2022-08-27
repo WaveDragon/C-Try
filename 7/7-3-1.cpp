@@ -20,8 +20,8 @@ public:
 public:
     Screen &set(char);
     Screen &set(pos,pos,char);
-    Screen &display(ostream &os){do_display(os);return *this;};
-    const Screen &display(ostream &os) const {do_display(os);return *this;};
+    Screen &display(ostream &os){do_display(os);return *this;};//非常量函数调用 常量do_display this指针隐式的从非常量转换为常量；
+    const Screen &display(ostream &os) const {do_display(os);return *this;};//常量版本函数 如果 do_display不是常量函数即报错；
 private:
     void do_display(ostream &os) const
     {
@@ -63,6 +63,9 @@ inline Screen &Screen::set(pos ht,pos wd,char c)
 
 int main()
 {
-
+    Screen myscreen(5,5,'x');
+    myscreen.move(4,4).set('d').display(cout);
+    cout << "\n";
+    myscreen.display(cout);
     return 0;
 }
