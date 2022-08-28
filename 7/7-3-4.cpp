@@ -92,6 +92,7 @@ int main()
     Screen *p = &myscreen;
     char c = myscreen.get();
     c = p->get(4,4);
+    Screen *a ;
     
     return 0;
 }
