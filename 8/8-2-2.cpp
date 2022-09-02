@@ -17,7 +17,11 @@ int main(int argc, char *argv[])//在终端中输入 8-2-2 data.txt 会把文件
         cerr << "Can not open the file! " << endl;
         return -1;
     }
-    ofstream out(argv[2]);
+    // ofstream out(argv[2]);//out隐式设置为输出和截断，即原文件内容会被清空
+    //等价于 ofstream out; 
+    // out open(argv[2]);
+
+    ofstream out(argv[2],ofstream::app);//改为追加模式，即源文件内容不会清空；
     if (!out)
     {
         cerr << "Please enter out file name!  :( " << endl;
@@ -38,7 +42,7 @@ int main(int argc, char *argv[])//在终端中输入 8-2-2 data.txt 会把文件
     {
         out<< *i << " ";
     }
-
+    out.close();//似乎不加 不重新编译 out 不会刷新；并不是，只要保存 输入文件就会刷新
 
 
     return 0;
