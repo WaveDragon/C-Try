@@ -10,6 +10,8 @@ public:
     Screen() = default;
     Screen(pos ht,pos wd,char c):
     height(ht),width(wd),contents(ht*wd,c){}
+
+    explicit Screen(char c): Screen(3,3,c){cout << "执行了委托构造函数" <<endl;}
     char get() const
     {
         return contents[cursor];
@@ -66,6 +68,14 @@ int main()
     Screen myscreen(5,5,'x');
     myscreen.move(4,4).set('d').display(cout);
     cout << "\n";
+
+    Screen screen1('a');
+
+    char a('d');
+    Screen screen(a);
+    Screen screen2('s');
+
+    
     myscreen.display(cout);
     return 0;
 }
