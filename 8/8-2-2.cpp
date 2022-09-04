@@ -40,7 +40,8 @@ int main(int argc, char *argv[])//在终端中输入 8-2-2 data.txt 会把文件
 
     for (auto i = words.begin(); i != words.end(); i++)
     {
-        out<< *i << " ";
+        out<< *i << " "<<endl;
+        cout << *i<<" ";
     }
     out.close();//似乎不加 不重新编译 out 不会刷新；并不是，只要保存 输入文件就会刷新
 
