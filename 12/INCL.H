@@ -12,5 +12,4 @@
 #include<set>
 
 using namespace std;
-
 #endif
