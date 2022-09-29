@@ -13,9 +13,8 @@ connection connect(destination *pd)
 {
     cout << "Open the linajie" << endl;
     return connection();
-
 }
-void disconnect (connection c)
+void disconnect(connection c)
 {
     cout << "Close the lianjie" << endl;
 }
@@ -34,14 +33,17 @@ void end_connection(connection *p)
     disconnect(*p);
 }
 
-
 //使用 shared_ptr版本
 void f1(destination &d)
 {
     cout << "用shared_ptr管理 connect" << endl;
     connection c = connect(&d);
 
-    shared_ptr<connection> p (&c,end_connection);
+    shared_ptr<connection> p(&c, end_connection);
+    //使用 lambda版本
+    shared_ptr<connection> p1(&c,
+                              [](connection *p)
+                              { disconnect(*p); });
 
     cout << endl;
 }
