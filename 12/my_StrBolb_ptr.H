@@ -158,7 +158,6 @@ bool eq(const StrBlobPtr &lhs, const StrBlobPtr &rhs)
     }
     
 }
-
 inline
 bool neq(const StrBlobPtr &lhs, const StrBlobPtr &rhs)
 {
