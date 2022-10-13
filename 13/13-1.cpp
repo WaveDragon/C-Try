@@ -15,8 +15,18 @@ public:
         ps = new string(*rhs.ps);
         i = rhs.i;
     }
-    // 拷贝构造运算符
-    
+    // 拷贝赋值运算符
+
+    HasPtr& operator= (const HasPtr &rhs)
+    {
+        auto newps = new string(*rhs.ps);//拷贝指针指向的对象
+        delete ps;//销毁原来的string
+        ps = newps;
+        i = rhs.i;
+        return *this;
+    }
+    //析构函数
+    ~HasPtr(){delete ps;}
 
 private:
     string *ps;
