@@ -11,6 +11,7 @@ private:
     size_t *use;
 
 public:
+    friend void swap(HasPtr&,HasPtr&);
     //构造函数分配新的string和新的计数器，将计数器置为1
     HasPtr(const string &s = string()) : ps(new string(s)), i(0), use(new size_t(1)) {}
     //拷贝构造函数拷贝三个数据成员，并递增计数器
@@ -64,12 +65,22 @@ string &HasPtr::operator*()
     return *ps;
 }
 
+inline
+void swap(HasPtr& lhs,HasPtr& rhs)
+{
+    cout <<" 交换" << endl;
+    swap(lhs.ps,rhs.ps);
+    swap(lhs.i,rhs.i);
+}
+
 int main()
 {
     HasPtr h1("Hello World");
     HasPtr h2(h1);
-    cout << *h1 << "\n" << *h2<< endl;
+    HasPtr h3("mom");
+    cout << *h1 << "\n" << *h2<< *h3<< endl;
     h1 = "Hello";
-    cout << *h1 << "\n" << *h2<< endl;
+    swap(h1,h3);
+    cout << *h1 << "\n" << *h2<< *h3<< endl;
     return 0;
 }
